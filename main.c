@@ -12,8 +12,8 @@ BigUint secondsInDay;
 const uint32_t cumulativeMonthLength[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
 
 #pragma #region utils
-void printBigUint(const char *txt, BigUint r){
-	char *buffer = biguintToStr(&r);
+void printBigUint(const char *txt, BigUint *r){
+	char *buffer = biguintToStr(r);
 	printf("%s%s\n", txt, buffer);
 	free(buffer);
 }
@@ -166,7 +166,7 @@ int main(){
 	
 	while(true){		
 		//FIRST
-		printf("Enter first date and time (YYYY/MM/DD/HH/MM/SS or YYYY/MM/DD or 'x' to exit): ");
+		printf("Enter first date and time (YYYY/MM/DD/HH/MM/SS, YYYY/MM/DD, 't' for current date and time, or 'x' to exit): ");
 		
 		char *input = readInput();
 		if(!input){
@@ -192,11 +192,11 @@ int main(){
 		
 		printf("Full days since year 1: %u\n", days1);
 		printf("Day of the week: %s\n", getDayOfTheWeek(days1 % 7));
-		printBigUint("Seconds since year 1: ", totalSeconds1);
+		printBigUint("Seconds since year 1: ", &totalSeconds1);
 		
 		
 		//SECOND
-		printf("\nEnter second date and time (YYYY/MM/DD/HH/MM/SS or YYYY/MM/DD): ");
+		printf("\nEnter second date and time (YYYY/MM/DD/HH/MM/SS, YYYY/MM/DD or 't' for current date and time): ");
 		
 		input = readInput();
 		if(!input){
@@ -218,7 +218,7 @@ int main(){
 		
 		printf("Full days since year 1: %u\n", days2);
 		printf("Day of the week: %s\n", getDayOfTheWeek(days2 % 7));
-		printBigUint("Seconds since year 1: ", totalSeconds2);
+		printBigUint("Seconds since year 1: ", &totalSeconds2);
 		
 		//MAIN
 		printf("\n");
@@ -240,7 +240,7 @@ int main(){
 			secDiff = biguintSubtract(&totalSeconds2, &totalSeconds1);
 		}
 		
-		printBigUint("Difference in seconds: ", secDiff);
+		printBigUint("Difference in seconds: ", &secDiff);
 		
 		printf("\n\n");
 		

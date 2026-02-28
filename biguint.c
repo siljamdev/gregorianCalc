@@ -10,6 +10,11 @@ BigUint newLen(size_t len){
 	BigUint b;
 	
 	b.len = len;
+	if(len == 0){
+		b.ptr = NULL;
+		return b;
+	}
+	
 	b.ptr = malloc(len * sizeof(uint32_t));
 	if(b.ptr == NULL){ //Fail
 		b.len = 0;
@@ -42,6 +47,11 @@ BigUint biguintClone(BigUint *b){
 	BigUint r;
 	
 	r.len = b->len;
+	if(b->len == 0){
+		r.ptr = NULL;
+		return r;
+	}
+	
 	r.ptr = malloc(r.len * sizeof(uint32_t));
 	if(r.ptr == NULL){ //Fail
 		r.len = 0;

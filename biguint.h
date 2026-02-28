@@ -16,6 +16,5 @@ BigUint biguintSubtract(BigUint *a, BigUint *b);
 BigUint biguintMultiply(BigUint *a, BigUint *b);
 bool biguintGreater(BigUint *a, BigUint *b);
 char *biguintToStr(BigUint *b);
-void printDebug(BigUint *b);
 
 #endif
